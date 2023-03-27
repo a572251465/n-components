@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@n-components/subscribe": "workspace:^1.0.0"
+    "@n-components/n-subscribe": "workspace:^1.0.0"
   }
 }
