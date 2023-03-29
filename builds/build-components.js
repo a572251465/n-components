@@ -5,9 +5,7 @@ const { rollup } = require("rollup");
 const fs = require("node:fs");
 const path = require("node:path");
 const { packageRoot, outDir } = require("./utils/paths");
-const { series } = require("gulp");
 const esbuild = require("esbuild");
-const { withTaskName } = require("./utils");
 
 const dirs = (() => {
   const dirNames = fs.readdirSync(packageRoot, "utf-8");
@@ -46,7 +44,7 @@ const buildEachComponents = async () => {
       external: (id) => /vue/.test(id),
     };
     const rollupOutputOptions = ["cjs", "es"].map((format) => ({
-      file: path.join(outputFilePath, format, `src/index.js`),
+      file: path.join(outputFilePath, format, `index.js`),
       format,
       exports: "named",
     }));

@@ -2,7 +2,14 @@
   "name": "@n-components/n-wrapper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./cjs/index.js",
+  "module": "./es/index.js",
+  "typings": "./types/index.d.ts",
+  "files": [
+    "cjs",
+    "es",
+    "types"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -4,6 +4,7 @@ const { buildEachComponents } = require("./build-components");
 const glob = require("fast-glob");
 const { packageRoot } = require("./utils/paths");
 const fs = require("fs/promises");
+const { buildEachFileTypes } = require("./build-types");
 
 const rmTransformFiles = async () => {
   const files = await glob("**/*.js", {
@@ -23,6 +24,8 @@ exports.default = series(
       buildEachComponents().then(resolve);
     });
   }),
-  // 3. 删除转换文件
-  withTaskName("3. remove transform file", rmTransformFiles)
+  // 3. 编译提取ts 类型
+  withTaskName("3. build ts type", buildEachFileTypes),
+  // n. 删除转换文件
+  withTaskName("4. remove transform file", rmTransformFiles)
 );
