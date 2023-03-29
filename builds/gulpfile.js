@@ -1,6 +1,18 @@
 const { series } = require("gulp");
 const { run, withTaskName } = require("./utils");
 const { buildEachComponents } = require("./build-components");
+const glob = require("fast-glob");
+const { packageRoot } = require("./utils/paths");
+const fs = require("fs/promises");
+
+const rmTransformFiles = async () => {
+  const files = await glob("**/*.js", {
+    cwd: packageRoot,
+    absolute: true,
+    onlyFiles: true,
+  });
+  return Promise.all(files.map((filePath) => fs.unlink(filePath)));
+};
 
 exports.default = series(
   // 1. 先删除dist
@@ -10,5 +22,7 @@ exports.default = series(
     return new Promise((resolve) => {
       buildEachComponents().then(resolve);
     });
-  })
+  }),
+  // 3. 删除转换文件
+  withTaskName("3. remove transform file", rmTransformFiles)
 );
