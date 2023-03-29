@@ -5,7 +5,7 @@ export const wrapperProvideKey = Symbol() as InjectionKey<IFn>;
 export const WrapperProps = {
   eventNames: {
     type: Array as PropType<string[]>,
-    default: ["click"]
+    default: ["click"],
   },
   classNames: {
     type: Array as PropType<string[]>,
