@@ -1,5 +1,5 @@
 {
-  "name": "@n-components/n-context-menu",
+  "name": "@n-components/n-wrapper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@n-components/n-subscribe": "workspace:^1.0.0"
-  }
+  "license": "ISC"
 }
