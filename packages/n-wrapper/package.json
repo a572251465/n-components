@@ -1,5 +1,5 @@
 {
-  "name": "@n-components/n-wrapper",
+  "name": "@lihh/n-wrapper",
   "version": "1.0.0",
   "description": "",
   "main": "./cjs/index.js",
@@ -10,10 +10,21 @@
     "es",
     "types"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a572251465/n-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/a572251465/n-components/issues"
+  },
+  "homepage": "https://github.com/a572251465/n-components",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "lihh",
+  "license": "MIT"
 }

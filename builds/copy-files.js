@@ -1,17 +1,27 @@
 const fs = require("node:fs");
 const { outDir, packageRoot } = require("./utils/paths");
 const path = require("node:path");
+const glob = require("fast-glob");
+const { run } = require("./utils");
 
-const dirs = (() => {
-  const dirNames = fs.readdirSync(packageRoot, "utf-8");
-  return dirNames
-    .filter((name) => {
-      const fullPath = path.join(packageRoot, name);
-      return fs.statSync(fullPath).isDirectory();
+const copyFiles = async () => {
+  const files = await glob(["**/*.json", "**/*.md"], {
+    cwd: packageRoot,
+    absolute: true,
+    onlyFiles: true,
+  });
+
+  const parentNames = files.map((filePath) =>
+    path.dirname(filePath).replace("packages", "dist")
+  );
+
+  await Promise.all(
+    files.map(async (filePath, index) => {
+      await run(`cp ${filePath} ${parentNames[index]}`);
     })
-    .map((name) => [
-      name,
-      path.join(packageRoot, name),
-      path.join(outDir, name),
-    ]);
-})();
+  );
+};
+
+module.exports = {
+  copyFiles,
+};

@@ -21,7 +21,7 @@ const computedAllDirs = async () => {
 
 const buildEachFileTypes = async () => {
   const allDirs = await computedAllDirs();
-  return Promise.all(
+  await Promise.all(
     allDirs.map(async (item) => {
       await buildTypes(item.packageRoot, item.outDir);
     })
@@ -51,7 +51,7 @@ const buildTypes = async (packageRoot, outDir) => {
     cwd: packageRoot,
     onlyFiles: true,
     absolute: true,
-    ignore: ["*.transform.js"],
+    ignore: ["*.transform.js", "*.json", "*.md"],
   });
 
   const sourceFiles = [];
