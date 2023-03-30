@@ -7,12 +7,12 @@ import {
   ref,
   VNodeRef,
 } from "vue";
-import {IFn, WrapperProps, wrapperProvideKey} from "./types";
+import { IFn, WrapperProps, wrapperProvideKey } from "./types";
 
 export default defineComponent({
   name: "n-wrapper",
   props: WrapperProps,
-  setup: function (props, {slots}) {
+  setup: function (props, { slots }) {
     const classNames = computed(() => props.classNames);
     const elRef = ref<VNodeRef | null>(null);
 
@@ -60,7 +60,7 @@ export default defineComponent({
     });
 
     return () => (
-      <div ref={elRef.value} class={classNames.value}>
+      <div ref={elRef} class={classNames.value}>
         {slots.default ? slots.default() : ""}
       </div>
     );
