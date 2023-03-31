@@ -7,7 +7,8 @@
   "scripts": {
     "lint": "eslint --fix --ext .ts packages --quiet",
     "prepare": "husky install",
-    "build": "gulp -f builds/gulpfile.js"
+    "build": "gulp -f builds/gulpfile.js",
+    "dev": "pnpm -C story dev"
   },
   "keywords": [],
   "author": "",

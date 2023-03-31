@@ -2,8 +2,8 @@
   "name": "@lihh/n-wrapper",
   "version": "1.0.0",
   "description": "",
-  "main": "./cjs/index.js",
-  "module": "./es/index.js",
+  "main": "index.ts",
+  "module": "index.ts",
   "typings": "./types/index.d.ts",
   "files": [
     "cjs",

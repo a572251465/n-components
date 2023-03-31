@@ -7,27 +7,35 @@ import {
   ref,
   VNodeRef,
 } from "vue";
-import { IFn, WrapperProps, wrapperProvideKey } from "./types";
+import {
+  IFn,
+  IWrapperInjectFnParams,
+  WrapperProps,
+  wrapperProvideKey,
+} from "./types";
+
+const componentName = "n-wrapper";
 
 export default defineComponent({
-  name: "n-wrapper",
+  name: componentName,
   props: WrapperProps,
   setup: function (props, { slots }) {
-    const classNames = computed(() => props.classNames);
+    const classNames = computed(() => [componentName, ...props.classNames]);
     const elRef = ref<VNodeRef | null>(null);
 
     const bindFn: IFn[] = [];
     const injectFn: IFn[] = [];
     let sureEventsNames = [] as string[];
 
-    provide(wrapperProvideKey, (callback: IFn) => {
+    provide(wrapperProvideKey, (callback: IFn<IWrapperInjectFnParams>) => {
+      if (~injectFn.indexOf(callback)) return;
       injectFn.push(callback);
     });
 
     const bindEventFunction = () => {
-      const el = elRef.value as HTMLDivElement;
+      const el = (elRef.value as HTMLDivElement) || window;
       sureEventsNames = props.eventNames.filter((name) => {
-        if (Reflect.has(el, `on${name}`)) {
+        if (!Reflect.has(el, `on${name}`)) {
           console.warn(`event name invalid. example: click, mousedown...`);
           return false;
         }
@@ -41,14 +49,14 @@ export default defineComponent({
           });
         };
         bindFn.push(addFn);
-        el.addEventListener(name, addFn);
+        if (!!el) el.addEventListener(name, addFn);
       });
     };
 
     const unBindEventFunction = () => {
       const el = elRef.value as HTMLDivElement;
       sureEventsNames.forEach((name, index) => {
-        el.removeEventListener(name, bindFn[index]);
+        if (!!el) el.removeEventListener(name, bindFn[index]);
       });
       bindFn.length = 0;
     };
