@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "event proxy vue component",
   "main": "index.ts",
   "module": "index.ts",
@@ -18,9 +18,7 @@
     "url": "https://github.com/a572251465/n-components/issues"
   },
   "homepage": "https://github.com/a572251465/n-components",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "publishConfig": {
     "access": "public"
   },

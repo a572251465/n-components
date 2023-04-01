@@ -4,7 +4,7 @@
 
 > 当实际的业务中出现类似`Tooltip`组件的话，需要点击 window/ document 来隐藏。此组件`n-wrapper` 可以代替 window 来接受事件冒泡，从而告诉你何种事件被触发，决定权在您手中。避免过度的事件绑定在 window 上
 
-简体中文 | [English](https://github.com/a572251465/w-hooks/blob/main/packages/src/useMount/index.zh-CN.md)
+简体中文 | [English](https://github.com/a572251465/n-components/blob/main/packages/n-wrapper/README-en.md)
 
 ### 下载
 
@@ -143,4 +143,4 @@ export const WrapperProps = {
 
 ## 更多
 
-> 致力于将每个组件单独打包为库，提供更多的可能性，如果有更多的响应请及时issue作者。
+> 致力于将每个组件单独打包为库，提供更多的可能性，如果有更多的需求请及时issue作者。

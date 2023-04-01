@@ -4,7 +4,7 @@ event proxy vue component
 
 > When a component similar to `Tooltip` appears in the actual business, you need to click Window/Document to hide it. This component `n-wrapper` can accept event bubbles instead of window, thereby telling you which event is triggered and the decision is in your hands. Avoid excessive event binding on windows
 
-English | [简体中文](https://github.com/a572251465/w-hooks/blob/main/packages/src/useMount/index.zh-CN.md)
+English | [简体中文](https://github.com/a572251465/n-components/blob/main/packages/n-wrapper/README.md)
 
 ### install
 
@@ -142,4 +142,4 @@ export const WrapperProps = {
 
 ## more
 
-> we are committed to packaging each component separately as a library, providing more possibilities. If there are more responses, please issue the author in a timely manner
+> we are committed to packaging each component separately as a library, providing more possibilities. If there are more needs, please issue the author in a timely manner

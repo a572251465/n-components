@@ -6,6 +6,7 @@ const { packageRoot } = require("./utils/paths");
 const fs = require("fs/promises");
 const { buildEachFileTypes } = require("./build-types");
 const { copyFiles } = require("./copy-files");
+const { editVersion } = require("./edit-version");
 
 const rmTransformFiles = async () => {
   const files = await glob("**/*.js", {
@@ -29,6 +30,8 @@ exports.default = series(
   withTaskName("3. build ts type", buildEachFileTypes),
   // 4. 拷贝 readme.md 以及package.json 等文件
   withTaskName("4. copy .json/.md files", copyFiles),
+  // 5. version up
+  withTaskName("5. up version", editVersion),
   // n. 删除转换文件
-  withTaskName("4. remove transform file", rmTransformFiles)
+  withTaskName("n. remove transform file", rmTransformFiles)
 );
