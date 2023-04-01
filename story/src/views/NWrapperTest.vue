@@ -1,22 +1,24 @@
 <script lang="ts" setup>
-import { ref, inject } from "vue";
+import { ref, inject, onUnmounted } from "vue";
 import {
-  IFn,
   IWrapperInjectFn,
   IWrapperInjectFnParams,
   wrapperProvideKey,
 } from "../../../packages/n-wrapper";
 
-const cilckCallback = (args: IWrapperInjectFnParams) => {
+const clickCallback = (args: IWrapperInjectFnParams) => {
   if (args[0] === "click") {
     showFlag.value = false;
   }
 };
 
-const fnPool = inject<IWrapperInjectFn>(wrapperProvideKey)!;
-fnPool(cilckCallback);
+const pool = inject<IWrapperInjectFn>(wrapperProvideKey)!;
+pool.installFn(clickCallback);
 
 const showFlag = ref(false);
+onUnmounted(() => {
+  pool.unInstallFn(clickCallback);
+});
 </script>
 
 <template>

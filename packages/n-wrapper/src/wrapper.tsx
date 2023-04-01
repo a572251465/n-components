@@ -27,9 +27,15 @@ export default defineComponent({
     const injectFn: IFn[] = [];
     let sureEventsNames = [] as string[];
 
-    provide(wrapperProvideKey, (callback: IFn<IWrapperInjectFnParams>) => {
-      if (~injectFn.indexOf(callback)) return;
-      injectFn.push(callback);
+    provide(wrapperProvideKey, {
+      installFn(callback) {
+        if (~injectFn.indexOf(callback)) return;
+        injectFn.push(callback);
+      },
+      unInstallFn(callback) {
+        const index = injectFn.findIndex((fn) => fn == callback);
+        if (~index) injectFn.splice(index, 1);
+      },
     });
 
     const bindEventFunction = () => {
