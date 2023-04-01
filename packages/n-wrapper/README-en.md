@@ -1,12 +1,12 @@
 ## n-wrapper
 
-事件代理 vue 组件
+event proxy vue component
 
-> 当实际的业务中出现类似`Tooltip`组件的话，需要点击 window/ document 来隐藏。此组件`n-wrapper` 可以代替 window 来接受事件冒泡，从而告诉你何种事件被触发，决定权在您手中。避免过度的事件绑定在 window 上
+> When a component similar to `Tooltip` appears in the actual business, you need to click Window/Document to hide it. This component `n-wrapper` can accept event bubbles instead of window, thereby telling you which event is triggered and the decision is in your hands. Avoid excessive event binding on windows
 
-简体中文 | [English](https://github.com/a572251465/w-hooks/blob/main/packages/src/useMount/index.zh-CN.md)
+English | [简体中文](https://github.com/a572251465/w-hooks/blob/main/packages/src/useMount/index.zh-CN.md)
 
-### 下载
+### install
 
 ```shell
 npm install @lihh/n-wrapper -S
@@ -20,11 +20,11 @@ yarn add @lihh/n-wrapper -S
 pnpm install @lihh/n-wrapper -S
 ```
 
-### 使用实例
+### use example
 
-#### n-wrapper 位置
+#### n-wrapper use location
 
-> 需要将组件`n-wrapper` 包括在最外层，来接受事件冒泡
+> The component `n-wrapper` needs to be included in the outermost layer to accept event bubbles
 
 ```vue
 <script lang="ts" setup>
@@ -33,12 +33,12 @@ import { NWrapper } from "@lihh/n-wrapper";
 
 <template>
   <n-wrapper>
-    <!--  此处是root 组件。   -->
+    <!--  root component   -->
   </n-wrapper>
 </template>
 ```
 
-#### TS 版本 使用实例
+#### TS use example
 
 ```vue
 <script lang="ts" setup>
@@ -74,7 +74,7 @@ onUnmounted(() => {
 </template>
 ```
 
-#### JS 版本 使用实例
+#### JS use example
 
 ```vue
 <script setup>
@@ -106,21 +106,21 @@ onUnmounted(() => {
 </template>
 ```
 
-### 导出类型
+### export types
 
 ```ts
 export type IFn<T = any> = (...args: T[]) => any;
 export type IWrapperInstallFn = (fn: IFn<IWrapperInjectFnParams>) => void;
 export type IWrapperUninstallFn = (fn: IFn) => void;
 export type IWrapperInjectFnParams = [string, Event];
-// inject的结果
+// inject result
 export type IWrapperInjectFn = {
   installFn: IWrapperInstallFn;
   unInstallFn: IWrapperUninstallFn;
 };
-// 提供的provideKey
+// provideKey
 export const wrapperProvideKey = Symbol() as InjectionKey<IWrapperInjectFn>;
-// 组件类型
+// component type
 export const WrapperProps = {
   eventNames: {
     type: Array as PropType<string[]>,
@@ -133,14 +133,13 @@ export const WrapperProps = {
 };
 ```
 
-### 组件类型
+### component type
 
-| 属性       | 描述           | 类型  | 默认值    |
-| ---------- | -------------- | ----- | --------- |
-| eventNames | 冒泡响应的事件 | Array | ["click"] |
-| classNames | 组件 样式      | Array | []        |
+| field      | desc                  | type  | value     |
+| ---------- | --------------------- | ----- | --------- |
+| eventNames | bubble response event | Array | ["click"] |
+| classNames | component event       | Array | []        |
 
+## more
 
-## 更多
-
-> 致力于将每个组件单独打包为库，提供更多的可能性，如果有更多的响应请及时issue作者。
+> we are committed to packaging each component separately as a library, providing more possibilities. If there are more responses, please issue the author in a timely manner

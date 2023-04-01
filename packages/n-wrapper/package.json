@@ -1,7 +1,7 @@
 {
   "name": "@lihh/n-wrapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "event proxy vue component",
   "main": "index.ts",
   "module": "index.ts",
   "typings": "./types/index.d.ts",
@@ -24,7 +24,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [],
+  "keywords": [
+    "vue",
+    "ui",
+    "n-wrapper",
+    "@lihh/n-wrapper"
+  ],
   "author": "lihh",
   "license": "MIT"
 }
