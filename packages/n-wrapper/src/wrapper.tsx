@@ -49,9 +49,9 @@ export default defineComponent({
       });
 
       sureEventsNames.forEach((name) => {
-        const addFn = (...args: any[]) => {
+        const addFn = (e: Event) => {
           injectFn.forEach((fn) => {
-            if (typeof fn === "function") fn(name, ...args);
+            if (typeof fn === "function") fn([name, e]);
           });
         };
         bindFn.push(addFn);
