@@ -9,7 +9,8 @@ import {
 } from "vue";
 import {
   IFn,
-  IWrapperInjectFnParams,
+  IWrapperInstallFn,
+  IWrapperUninstallFn,
   WrapperProps,
   wrapperProvideKey,
 } from "./types";
@@ -27,16 +28,15 @@ export default defineComponent({
     const injectFn: IFn[] = [];
     let sureEventsNames = [] as string[];
 
-    provide(wrapperProvideKey, {
-      installFn(callback) {
-        if (~injectFn.indexOf(callback)) return;
-        injectFn.push(callback);
-      },
-      unInstallFn(callback) {
-        const index = injectFn.findIndex((fn) => fn == callback);
-        if (~index) injectFn.splice(index, 1);
-      },
-    });
+    const installFn: IWrapperInstallFn = (callback) => {
+      if (~injectFn.indexOf(callback)) return;
+      injectFn.push(callback);
+    };
+    const unInstallFn: IWrapperUninstallFn = (callback) => {
+      const index = injectFn.findIndex((fn) => fn == callback);
+      if (~index) injectFn.splice(index, 1);
+    };
+    provide(wrapperProvideKey, [installFn, unInstallFn]);
 
     const bindEventFunction = () => {
       const el = (elRef.value as HTMLDivElement) || window;

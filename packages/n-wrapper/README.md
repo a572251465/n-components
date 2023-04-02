@@ -55,12 +55,12 @@ const clickCallback = (args: IWrapperInjectFnParams) => {
   }
 };
 
-const pool = inject<IWrapperInjectFn>(wrapperProvideKey)!;
-pool.installFn(clickCallback);
+const [installFn, unInstallFn] = inject<IWrapperInjectFn>(wrapperProvideKey)!;
+installFn(clickCallback);
 
 const showFlag = ref(false);
 onUnmounted(() => {
-  pool.unInstallFn(clickCallback);
+  unInstallFn(clickCallback);
 });
 </script>
 
@@ -87,12 +87,12 @@ const clickCallback = (args) => {
   }
 };
 
-const pool = inject(wrapperProvideKey);
-pool.installFn(clickCallback);
+const [installFn, unInstallFn] = inject(wrapperProvideKey);
+installFn(clickCallback);
 
 const showFlag = ref(false);
 onUnmounted(() => {
-  pool.unInstallFn(clickCallback);
+  unInstallFn(clickCallback);
 });
 </script>
 
@@ -140,7 +140,12 @@ export const WrapperProps = {
 | eventNames | 冒泡响应的事件 | Array | ["click"] |
 | classNames | 组件 样式      | Array | []        |
 
+## 更新记录
+
+- 1.0.1 版本第一次发布
+- 1.0.2 修改 README 中提示文字
+- 1.0.3 将 inject 方法的返回值进行修改。`const poll = inject(wrapperProvideKey);` => `const [installFn, unInstallFn] = inject(wrapperProvideKey);` 对象转换数组
 
 ## 更多
 
-> 致力于将每个组件单独打包为库，提供更多的可能性，如果有更多的需求请及时issue作者。
+> 致力于将每个组件单独打包为库，提供更多的可能性，如果有更多的需求请及时 issue 作者。

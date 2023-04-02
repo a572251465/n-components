@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-wrapper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "event proxy vue component",
   "main": "index.ts",
   "module": "index.ts",

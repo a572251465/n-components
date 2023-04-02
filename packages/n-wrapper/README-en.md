@@ -140,6 +140,14 @@ export const WrapperProps = {
 | eventNames | bubble response event | Array | ["click"] |
 | classNames | component event       | Array | []        |
 
+
+## update record
+
+- 1.0.1 first publish
+- 1.0.2 text modification in README
+- 1.0.3 Modify the return value of the inject method。`const poll = inject(wrapperProvideKey);` => `const [installFn, unInstallFn] = inject(wrapperProvideKey);` Object conversion array
+
+
 ## more
 
 > we are committed to packaging each component separately as a library, providing more possibilities. If there are more needs, please issue the author in a timely manner

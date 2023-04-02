@@ -12,12 +12,12 @@ const clickCallback = (args: IWrapperInjectFnParams) => {
   }
 };
 
-const pool = inject<IWrapperInjectFn>(wrapperProvideKey)!;
-pool.installFn(clickCallback);
+const [installFn, unInstallFn] = inject<IWrapperInjectFn>(wrapperProvideKey)!;
+installFn(clickCallback);
 
 const showFlag = ref(false);
 onUnmounted(() => {
-  pool.unInstallFn(clickCallback);
+  unInstallFn(clickCallback);
 });
 </script>
 
