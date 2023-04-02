@@ -1,0 +1,33 @@
+{
+  "name": "@lihh/n-context-menu",
+  "version": "1.0.0",
+  "description": "mouse right click vue component",
+  "main": "index.ts",
+  "module": "index.ts",
+  "typings": "./types/index.d.ts",
+  "files": [
+    "cjs",
+    "es",
+    "types"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a572251465/n-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/a572251465/n-components/issues"
+  },
+  "homepage": "https://github.com/a572251465/n-components",
+  "scripts": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vue",
+    "ui",
+    "n-context-menu",
+    "@lihh/n-wrapper"
+  ],
+  "author": "lihh",
+  "license": "MIT"
+}
