@@ -1,15 +1,17 @@
-const fs = require("node:fs");
-const { outDir, packageRoot } = require("./utils/paths");
+const { packageRoot, includePackages } = require("./utils/paths");
 const path = require("node:path");
 const glob = require("fast-glob");
 const { run } = require("./utils");
 
 const copyFiles = async () => {
-  const files = await glob(["**/*.json", "**/*.md"], {
+  let files = await glob(["**/*.json", "**/*.md"], {
     cwd: packageRoot,
     absolute: true,
     onlyFiles: true,
   });
+  files = files.filter((filePath) =>
+    includePackages.some((name) => filePath.includes(name))
+  );
 
   const parentNames = files.map((filePath) =>
     path.dirname(filePath).replace("packages", "dist")

@@ -4,11 +4,13 @@ const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const { rollup } = require("rollup");
 const fs = require("node:fs");
 const path = require("node:path");
-const { packageRoot, outDir } = require("./utils/paths");
+const { packageRoot, outDir, includePackages } = require("./utils/paths");
 const esbuild = require("esbuild");
 
 const dirs = (() => {
-  const dirNames = fs.readdirSync(packageRoot, "utf-8");
+  const dirNames = fs
+    .readdirSync(packageRoot, "utf-8")
+    .filter((name) => includePackages.includes(name));
   return dirNames
     .filter((name) => {
       const fullPath = path.join(packageRoot, name);

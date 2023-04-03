@@ -1,6 +1,6 @@
 const fs = require("fs/promises");
 const path = require("path");
-const { outDir, packageRoot } = require("./utils/paths");
+const { outDir, packageRoot, includePackages } = require("./utils/paths");
 
 const upgradeVersion = (versionNum) => {
   versionNum += "";
@@ -17,13 +17,13 @@ const upgradeVersion = (versionNum) => {
 upgradeVersion("1.0.0");
 
 const editVersion = async () => {
-  const dirs = (await fs.readdir(path.join(outDir))).filter(
-    async (fileName) => {
+  const dirs = (await fs.readdir(path.join(outDir)))
+    .filter((name) => includePackages.includes(name))
+    .filter(async (fileName) => {
       const newPath = path.join(outDir, fileName);
       const stat = await fs.stat(newPath);
       return stat.isDirectory();
-    }
-  );
+    });
 
   await Promise.all(
     dirs.map(async (filename) => {

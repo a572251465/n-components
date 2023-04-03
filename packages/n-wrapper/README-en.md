@@ -113,14 +113,8 @@ export type IFn<T = any> = (...args: T[]) => any;
 export type IWrapperInstallFn = (fn: IFn<IWrapperInjectFnParams>) => void;
 export type IWrapperUninstallFn = (fn: IFn) => void;
 export type IWrapperInjectFnParams = [string, Event];
-// inject result
-export type IWrapperInjectFn = {
-  installFn: IWrapperInstallFn;
-  unInstallFn: IWrapperUninstallFn;
-};
-// provideKey
+export type IWrapperInjectFn = [IWrapperInstallFn, IWrapperUninstallFn];
 export const wrapperProvideKey = Symbol() as InjectionKey<IWrapperInjectFn>;
-// component type
 export const WrapperProps = {
   eventNames: {
     type: Array as PropType<string[]>,
@@ -135,18 +129,18 @@ export const WrapperProps = {
 
 ### component type
 
-| field      | desc                  | type  | value     |
-| ---------- | --------------------- | ----- | --------- |
-| eventNames | bubble response event | Array | ["click"] |
-| classNames | component event       | Array | []        |
-
+| field      | desc                  | type  | value     | version |
+| ---------- | --------------------- | ----- | --------- | ------- |
+| eventNames | bubble response event | Array | ["click"] | 1.0.1   |
+| classNames | component event       | Array | []        | 1.0.1   |
 
 ## update record
 
 - 1.0.1 first publish
 - 1.0.2 text modification in README
 - 1.0.3 Modify the return value of the inject method。`const poll = inject(wrapperProvideKey);` => `const [installFn, unInstallFn] = inject(wrapperProvideKey);` Object conversion array
-
+- 1.0.4 export type modification in README
+- 1.0.5 component type add field【version】 in README
 
 ## more
 

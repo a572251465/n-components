@@ -113,14 +113,8 @@ export type IFn<T = any> = (...args: T[]) => any;
 export type IWrapperInstallFn = (fn: IFn<IWrapperInjectFnParams>) => void;
 export type IWrapperUninstallFn = (fn: IFn) => void;
 export type IWrapperInjectFnParams = [string, Event];
-// inject的结果
-export type IWrapperInjectFn = {
-  installFn: IWrapperInstallFn;
-  unInstallFn: IWrapperUninstallFn;
-};
-// 提供的provideKey
+export type IWrapperInjectFn = [IWrapperInstallFn, IWrapperUninstallFn];
 export const wrapperProvideKey = Symbol() as InjectionKey<IWrapperInjectFn>;
-// 组件类型
 export const WrapperProps = {
   eventNames: {
     type: Array as PropType<string[]>,
@@ -135,16 +129,18 @@ export const WrapperProps = {
 
 ### 组件类型
 
-| 属性       | 描述           | 类型  | 默认值    |
-| ---------- | -------------- | ----- | --------- |
-| eventNames | 冒泡响应的事件 | Array | ["click"] |
-| classNames | 组件 样式      | Array | []        |
+| 属性       | 描述           | 类型  | 默认值    | 版本  |
+| ---------- | -------------- | ----- | --------- | ----- |
+| eventNames | 冒泡响应的事件 | Array | ["click"] | 1.0.1 |
+| classNames | 组件 样式      | Array | []        | 1.01  |
 
 ## 更新记录
 
 - 1.0.1 版本第一次发布
 - 1.0.2 修改 README 中提示文字
 - 1.0.3 将 inject 方法的返回值进行修改。`const poll = inject(wrapperProvideKey);` => `const [installFn, unInstallFn] = inject(wrapperProvideKey);` 对象转换数组
+- 1.0.4 修改 README 导出类型
+- 1.0.5 组件类型 添加版本号
 
 ## 更多
 
