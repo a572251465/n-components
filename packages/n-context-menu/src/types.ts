@@ -31,10 +31,18 @@ export const contextMenuProps = {
   },
   leaveAutoClose: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   position: {
     type: Object as PropType<{ top: number; left: number }>,
     default: () => ({ top: 0, left: 0 }),
+  },
+  minWidth: {
+    type: Number,
+    default: 100,
+  },
+  zIndex: {
+    type: Number,
+    default: 10,
   },
 };

@@ -61,8 +61,10 @@ importers:
   packages/n-context-menu:
     specifiers:
       '@lihh/n-utils': workspace:^1.0.1
+      '@lihh/n-wrapper': workspace:^1.0.4
     dependencies:
       '@lihh/n-utils': link:../n-utils
+      '@lihh/n-wrapper': link:../n-wrapper
 
   packages/n-wrapper:
     specifiers: {}

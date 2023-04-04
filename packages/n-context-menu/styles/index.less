@@ -1,4 +1,8 @@
 .context-menu {
+  &-wrapper {
+    display: inline-block;
+  }
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -23,6 +27,7 @@
     color: var(--context-menu-ft-color);
     border-radius: var(--context-menu-border-radius);
     box-shadow: var(--context-menu-box-shadow);
+    position: fixed;
 
     &-row {
       cursor: pointer;

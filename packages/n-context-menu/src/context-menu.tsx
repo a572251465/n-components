@@ -1,6 +1,7 @@
 import {
   computed,
   defineComponent,
+  inject,
   onMounted,
   onUnmounted,
   ref,
@@ -9,6 +10,7 @@ import {
 } from "vue";
 import { contextMenuProps, IDataField } from "./types";
 import { flattenJoinSymbol } from "@lihh/n-utils";
+import { wrapperProvideKey } from "@lihh/n-wrapper";
 import MenuPanel from "./menu-panel";
 
 const componentName = "n-context-menu";
@@ -45,8 +47,12 @@ export default defineComponent({
     watch(showFlag, (value: boolean) => {
       if (!value) emit("on-cancel");
     });
+    const [installFn, uninstallFn] = inject(wrapperProvideKey) || [];
 
-    const willAddTriggerEvent = () => (showFlag.value = !showFlag.value);
+    const willAddTriggerEvent = (e: MouseEvent) => {
+      e.stopPropagation();
+      showFlag.value = !showFlag.value;
+    };
     const closePanelHandel = () => (showFlag.value = false);
 
     const panelRowSelectedCallback = (item: IDataField) => {
@@ -61,6 +67,8 @@ export default defineComponent({
         props.trigger,
         willAddTriggerEvent
       );
+
+      if (typeof installFn === "function") installFn(closePanelHandel);
     });
     onUnmounted(() => {
       // remove bind event
@@ -68,6 +76,8 @@ export default defineComponent({
         props.trigger,
         willAddTriggerEvent
       );
+
+      if (typeof uninstallFn === "function") uninstallFn(closePanelHandel);
     });
 
     const commonComponent = () => {
