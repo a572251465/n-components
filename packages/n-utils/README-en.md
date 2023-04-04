@@ -45,7 +45,7 @@ export type flattenJoinSymbol<T> = {
 
 ## update records
 
-- 1.0.0 first publish
+- 1.0.1 first publish
 
 ## more
 

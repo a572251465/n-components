@@ -29,5 +29,8 @@
     "@lihh/n-context-menu"
   ],
   "author": "lihh",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@lihh/n-utils": "workspace:^1.0.1"
+  }
 }

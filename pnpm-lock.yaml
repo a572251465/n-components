@@ -58,6 +58,12 @@ importers:
       vinyl: 3.0.0
       vue: 3.2.47
 
+  packages/n-context-menu:
+    specifiers:
+      '@lihh/n-utils': workspace:^1.0.1
+    dependencies:
+      '@lihh/n-utils': link:../n-utils
+
   packages/n-wrapper:
     specifiers: {}
 

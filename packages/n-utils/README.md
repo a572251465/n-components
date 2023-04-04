@@ -45,7 +45,7 @@ export type flattenJoinSymbol<T> = {
 
 ## 更新记录
 
-- 1.0.0 版本第一次发布
+- 1.0.1 版本第一次发布
 
 ## 更多
 

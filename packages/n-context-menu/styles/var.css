@@ -1,0 +1,12 @@
+.context-menu {
+  --context-menu-bg-color: #ffffff;
+  --context-menu-hover-bg-color: #f3f3f5;
+  --context-menu-hover-ft-color: #333639;
+  --context-menu-disabled-ft-color: rgba(194, 194, 194, 1);
+  --context-menu-ft-color: #333639;
+  --context-menu-ft-size: 13px;
+  --context-menu-border-radius: 4px;
+  --context-menu-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --context-menu-row-padding: 10px;
+}

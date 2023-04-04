@@ -1,0 +1,42 @@
+.context-menu {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    list-style: none;
+  }
+
+  &-panel {
+    background: var(--context-menu-bg-color);
+    font-size: var(--context-menu-ft-size);
+    color: var(--context-menu-ft-color);
+    border-radius: var(--context-menu-border-radius);
+    box-shadow: var(--context-menu-box-shadow);
+
+    &-row {
+      cursor: pointer;
+      padding: var(--context-menu-row-padding);
+
+      &__disabled {
+        cursor: not-allowed;
+        color: var(--context-menu-disabled-ft-color);
+      }
+
+      &:hover:not(&__disabled) {
+        background: var(--context-menu-hover-bg-color);
+        color: var(--context-menu-hover-ft-color);
+      }
+    }
+  }
+}

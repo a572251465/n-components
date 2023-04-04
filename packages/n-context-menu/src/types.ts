@@ -4,9 +4,14 @@ export type IDataField = {
   value: string;
   label: string;
   isShow?: boolean;
+  disabled?: boolean;
 };
 
 export const contextMenuProps = {
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
   trigger: {
     type: String as PropType<"contextmenu" | "click">,
     default: "contextmenu",
@@ -21,6 +26,10 @@ export const contextMenuProps = {
     default: false,
   },
   destroyOnClose: {
+    type: Boolean,
+    default: true,
+  },
+  leaveAutoClose: {
     type: Boolean,
     default: true,
   },
