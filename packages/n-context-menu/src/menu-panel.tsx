@@ -7,8 +7,14 @@ const rowClass = mergeFn([basicClass, "row"]);
 
 export default defineComponent({
   props: {
-    data: Array as PropType<IDataField[]>,
-    default: [],
+    data: {
+      type: Array as PropType<IDataField[]>,
+      default: [],
+    },
+    align: {
+      type: String as PropType<"left" | "center" | "right">,
+      default: "left",
+    },
   },
   emits: ["selected"],
   setup(props, { emit }) {
@@ -29,6 +35,7 @@ export default defineComponent({
               class={[
                 rowClass,
                 item.disabled ? mergeFn([rowClass, "disabled"], "__") : "",
+                mergeFn([rowClass, props.align], "--"),
               ]}
             >
               {item.label}

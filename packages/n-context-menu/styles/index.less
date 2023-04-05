@@ -1,3 +1,13 @@
+@aligns: left, center, right;
+
+.loop(@index, @arr, @prefix) when (@index > 0) {
+  @name: extract(@arr, @index);
+  &@{prefix}@{name} {
+    text-align: @name;
+  }
+  .loop(@index - 1, @arr, @prefix);
+}
+
 .context-menu {
   &-wrapper {
     display: inline-block;
@@ -32,6 +42,9 @@
     &-row {
       cursor: pointer;
       padding: var(--context-menu-row-padding);
+
+      @prefix: --;
+      .loop(length(@aligns), @aligns, @prefix);
 
       &__disabled {
         cursor: not-allowed;
