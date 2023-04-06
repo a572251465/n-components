@@ -6,7 +6,10 @@
   --context-menu-ft-color: #333639;
   --context-menu-ft-size: 13px;
   --context-menu-border-radius: 4px;
-  --context-menu-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --context-menu-box-shadow: 15px -10px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --context-menu-row-padding: 10px;
+  --context-menu-bg-triangle-color: #fff;
+  --context-menu-triangle-size: 5px;
+  --context-menu-triangle-size-back: -5px;
 }

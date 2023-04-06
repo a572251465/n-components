@@ -59,4 +59,8 @@ export const contextMenuProps = {
     default: 10,
     validator: (value: number) => isPropNumber(value),
   },
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
 };

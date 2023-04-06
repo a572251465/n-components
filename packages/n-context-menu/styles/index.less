@@ -31,6 +31,34 @@
     list-style: none;
   }
 
+  &-arrow {
+    .arrowCommonStyle() {
+      display: block;
+      content: "";
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      border-right: var(--context-menu-triangle-size) solid transparent;
+      border-left: var(--context-menu-triangle-size) solid transparent;
+    }
+    &--bottom {
+      &:before {
+        .arrowCommonStyle();
+        bottom: var(--context-menu-triangle-size-back);
+        border-top: var(--context-menu-triangle-size) solid
+          var(--context-menu-bg-triangle-color);
+      }
+    }
+    &--top {
+      &:before {
+        .arrowCommonStyle();
+        top: var(--context-menu-triangle-size-back);
+        border-bottom: var(--context-menu-triangle-size) solid
+          var(--context-menu-bg-triangle-color);
+      }
+    }
+  }
+
   &-panel {
     background: var(--context-menu-bg-color);
     font-size: var(--context-menu-ft-size);

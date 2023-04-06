@@ -4,6 +4,7 @@ import "../../../packages/n-context-menu/styles/var.css";
 import "../../../packages/n-context-menu/styles/index.less";
 import { ref } from "vue";
 const showFlag = ref<boolean>(false);
+const showFlag1 = ref<boolean>(false);
 
 const data: IDataField[] = [
   {
@@ -28,6 +29,16 @@ const data: IDataField[] = [
       <button>点击测试 n-context-menu</button>
     </n-context-menu>
   </div>
+  <div class="context-menu-test">
+    <n-context-menu v-model="showFlag1">
+      <button>右击测试 n-context-menu</button>
+      <template #panel>
+        <ul>
+          <li v-for="item in data" :key="item.value">{{ item.label }}</li>
+        </ul>
+      </template>
+    </n-context-menu>
+  </div>
 </template>
 
 <style lang="less" scoped>
@@ -35,6 +46,7 @@ const data: IDataField[] = [
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 }
 button {
   padding: 10px 20px;

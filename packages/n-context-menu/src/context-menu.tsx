@@ -14,31 +14,10 @@ import { wrapperProvideKey } from "@lihh/n-wrapper";
 import MenuPanel from "./menu-panel";
 
 type IPosLocation = "left" | "top" | "width" | "height";
+
+const basicClass = "context-menu";
 const componentName = "n-context-menu";
 const basicLocation = { left: 0, top: 0, width: 0, height: 0 };
-const defaultSlotWrapperInfo = ref<Pick<DOMRect, IPosLocation>>(basicLocation);
-const panelWrapperInfo = ref<Pick<DOMRect, IPosLocation>>(basicLocation);
-
-const computePosLocation = (slotGap: number): { left: number; top: number } => {
-  const pos = { left: 0, top: 0 };
-  const defaultPosInfo = defaultSlotWrapperInfo.value;
-  const panelPosInfo = panelWrapperInfo.value;
-
-  const viewH = document.documentElement.clientHeight;
-  const bottomPosFlag =
-    viewH - defaultPosInfo.top - defaultPosInfo.height - 10 >
-    panelPosInfo.height;
-
-  pos.left =
-    defaultPosInfo.left +
-    defaultPosInfo.width / 2 -
-    (panelPosInfo.width || 0) / 2;
-  pos.top = defaultPosInfo.top + defaultPosInfo.height + slotGap;
-  if (!bottomPosFlag)
-    pos.top =
-      pos.top - defaultPosInfo.height - panelPosInfo.height - slotGap * 2;
-  return pos;
-};
 const addUnit = (value: unknown, unit = "px") => value + unit;
 
 export default defineComponent({
@@ -50,12 +29,25 @@ export default defineComponent({
   },
   emits: ["on-cancel", "on-selected", "update:modelValue"],
   setup(props, { slots, emit }) {
-    const basicClass = "context-menu";
+    const defaultSlotWrapperInfo =
+      ref<Pick<DOMRect, IPosLocation>>(basicLocation);
+    const panelWrapperInfo = ref<Pick<DOMRect, IPosLocation>>(basicLocation);
     const appendToBody = computed(() => props.appendToBody);
     const destroyOnClose = computed(() => props.destroyOnClose);
     const leaveAutoClose = computed(() => props.leaveAutoClose);
     const defaultWrapperRef = ref<HTMLDivElement>();
     const panelWrapperRef = ref<HTMLDivElement>();
+    const showArrow = computed(() => props.showArrow);
+
+    const bottomPosFlag = computed(() => {
+      const defaultPosInfo = defaultSlotWrapperInfo.value;
+      const panelPosInfo = panelWrapperInfo.value;
+      const viewH = document.documentElement.clientHeight;
+      return (
+        viewH - defaultPosInfo.top - defaultPosInfo.height - 10 >
+        panelPosInfo.height
+      );
+    });
     const computeDisplayStyles = computed(() => {
       const pos = computePosLocation(props.slotGap);
       return {
@@ -93,9 +85,27 @@ export default defineComponent({
       });
     });
 
+    const computePosLocation = (
+      slotGap: number
+    ): { left: number; top: number } => {
+      const pos = { left: 0, top: 0 };
+      const defaultPosInfo = defaultSlotWrapperInfo.value;
+      const panelPosInfo = panelWrapperInfo.value;
+
+      pos.left =
+        defaultPosInfo.left +
+        defaultPosInfo.width / 2 -
+        (panelPosInfo.width || 0) / 2;
+      pos.top = defaultPosInfo.top + defaultPosInfo.height + slotGap;
+      if (!bottomPosFlag.value)
+        pos.top =
+          pos.top - defaultPosInfo.height - panelPosInfo.height - slotGap * 2;
+      return pos;
+    };
+
     const willAddTriggerEvent = (e: MouseEvent) => {
-      e.stopPropagation();
       showFlag.value = !showFlag.value;
+      if (props.trigger === "click") e.stopPropagation();
     };
     const closePanelHandel = () => (showFlag.value = false);
     const initMethod = () => {
@@ -132,7 +142,15 @@ export default defineComponent({
       return (
         <div
           style={computeDisplayStyles.value}
-          class={flattenJoinSymbol([basicClass, "panel"])}
+          class={[
+            flattenJoinSymbol([basicClass, "panel"]),
+            showArrow.value
+              ? flattenJoinSymbol([
+                  basicClass,
+                  `arrow--${bottomPosFlag.value ? "top" : "bottom"}`,
+                ])
+              : "",
+          ]}
           ref={panelWrapperRef}
           onMouseleave={() =>
             leaveAutoClose.value ? closePanelHandel() : null
