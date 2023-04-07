@@ -64,3 +64,8 @@ export const contextMenuProps = {
     default: true,
   },
 };
+
+type ISingleTypeExtract<T> = T extends { default: infer R } ? R : never;
+export type IExtractProps<T extends Record<string, Record<string, any>>> = {
+  [P in keyof T]: ISingleTypeExtract<T[P]>;
+};
