@@ -25,7 +25,7 @@ export const contextMenuProps = {
   },
   appendToBody: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   slotGap: {
     type: Number,
@@ -34,7 +34,7 @@ export const contextMenuProps = {
   },
   destroyOnClose: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   leaveAutoClose: {
     type: Boolean,

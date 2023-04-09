@@ -5,6 +5,7 @@ import {
   onUnmounted,
   Transition,
   watch,
+  h,
 } from "vue";
 import { contextMenuProps, IDataField } from "./types";
 import { flattenJoinSymbol } from "@lihh/n-utils";
@@ -41,7 +42,11 @@ export default defineComponent({
     } = usePropsOrCustomField(props, emit);
 
     watch(showFlag, (value: boolean) => {
-      if (!value) emit("on-cancel");
+      if (value) addContextMenuOnBody();
+      else {
+        emit("on-cancel");
+        removeContextMenuOnBody();
+      }
     });
     watch([showFlag, () => props.data], () => {
       queueMicrotask(() => {
@@ -70,6 +75,14 @@ export default defineComponent({
         defaultWrapperRef.value?.getBoundingClientRect()!;
     };
 
+    const addContextMenuOnBody = () => {
+      if (!appendToBody.value) return;
+    };
+
+    const removeContextMenuOnBody = () => {
+      if (!appendToBody.value) return;
+    };
+
     const panelRowSelectedCallback = (item: IDataField) => {
       emit("on-selected", item);
       closePanelHandel();
@@ -86,6 +99,19 @@ export default defineComponent({
 
       if (typeof uninstallFn === "function") uninstallFn(closePanelHandel);
     });
+
+    const componentToBody = (id: string) => (
+      <div id={id}>
+        <Transition name="fade">
+          <div
+            v-show={showFlag.value}
+            class={flattenJoinSymbol([basicClass, "blank"])}
+          >
+            {commonComponent()}
+          </div>
+        </Transition>
+      </div>
+    );
 
     const commonComponent = () => {
       return (
@@ -128,7 +154,18 @@ export default defineComponent({
         </div>
         {appendToBody.value ? null : (
           <Transition name="fade">
-            {showFlag.value ? commonComponent() : null}
+            {destroyOnClose.value ? (
+              showFlag.value ? (
+                commonComponent()
+              ) : null
+            ) : (
+              <div
+                class={flattenJoinSymbol([basicClass, "blank"])}
+                v-show={showFlag.value}
+              >
+                {commonComponent()}
+              </div>
+            )}
           </Transition>
         )}
       </div>
