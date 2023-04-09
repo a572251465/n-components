@@ -6,6 +6,7 @@ import {
   Transition,
   watch,
   h,
+  render,
 } from "vue";
 import { contextMenuProps, IDataField } from "./types";
 import { flattenJoinSymbol } from "@lihh/n-utils";
@@ -15,6 +16,8 @@ import { usePropsOrCustomField } from "./helper";
 
 const basicClass = "context-menu";
 const componentName = "n-context-menu";
+let idCount = (Math.random() * 1000000) | 0;
+const cacheMap = new WeakMap<object, HTMLDivElement>();
 
 export default defineComponent({
   name: componentName,
@@ -39,6 +42,7 @@ export default defineComponent({
       displayData,
       showArrow,
       bottomPosFlag,
+      genInstanceId,
     } = usePropsOrCustomField(props, emit);
 
     watch(showFlag, (value: boolean) => {
@@ -76,11 +80,25 @@ export default defineComponent({
     };
 
     const addContextMenuOnBody = () => {
-      if (!appendToBody.value) return;
+      if (!appendToBody.value || genInstanceId.value) return;
+
+      genInstanceId.value = new String(
+        flattenJoinSymbol(["context", "menu", "id", idCount++])
+      );
+      const element = document.createElement("div");
+      element.id = genInstanceId.value.valueOf();
+      render(componentToBody(), element);
+      document.body.appendChild(element);
+      cacheMap.set(genInstanceId.value, element);
     };
 
     const removeContextMenuOnBody = () => {
-      if (!appendToBody.value) return;
+      if (!appendToBody.value || !leaveAutoClose.value) return;
+
+      const element = cacheMap.get(genInstanceId.value!) as HTMLDivElement;
+      render(null, element);
+      genInstanceId.value = null;
+      element.parentNode!.removeChild(element);
     };
 
     const panelRowSelectedCallback = (item: IDataField) => {
@@ -100,17 +118,15 @@ export default defineComponent({
       if (typeof uninstallFn === "function") uninstallFn(closePanelHandel);
     });
 
-    const componentToBody = (id: string) => (
-      <div id={id}>
-        <Transition name="fade">
-          <div
-            v-show={showFlag.value}
-            class={flattenJoinSymbol([basicClass, "blank"])}
-          >
-            {commonComponent()}
-          </div>
-        </Transition>
-      </div>
+    const componentToBody = () => (
+      <Transition name="context-menu-fade">
+        <div
+          v-show={showFlag.value}
+          class={flattenJoinSymbol([basicClass, "blank"])}
+        >
+          {commonComponent()}
+        </div>
+      </Transition>
     );
 
     const commonComponent = () => {
@@ -153,7 +169,7 @@ export default defineComponent({
           {slots.default?.()}
         </div>
         {appendToBody.value ? null : (
-          <Transition name="fade">
+          <Transition name="context-menu-fade">
             {destroyOnClose.value ? (
               showFlag.value ? (
                 commonComponent()
