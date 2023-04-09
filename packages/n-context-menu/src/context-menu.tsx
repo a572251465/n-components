@@ -5,7 +5,6 @@ import {
   onUnmounted,
   Transition,
   watch,
-  h,
   render,
 } from "vue";
 import { contextMenuProps, IDataField } from "./types";

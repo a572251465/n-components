@@ -90,6 +90,6 @@ export const usePropsOrCustomField = (
     computeDisplayStyles,
     showFlag,
     displayData,
-    genInstanceId
+    genInstanceId,
   };
 };
