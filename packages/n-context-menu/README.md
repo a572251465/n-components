@@ -2,7 +2,7 @@
 
 模拟鼠标右击，弹出功能菜单事件
 
-> 当需要自定义`contextmenu` 的时候，这个组件将是一个不错的选择，同时支持`contextmenu`, `click` 事件触发
+> 当需要自定义`contextmenu`事件的时候，这个组件将是一个不错的选择，同时支持`contextmenu`, `click` 事件触发
 
 简体中文 | [English](https://github.com/a572251465/n-components/blob/main/packages/n-context-menu/README-en.md)
 
@@ -22,7 +22,17 @@ pnpm install @lihh/n-context-menu -S
 
 ### 使用实例
 
-> 为了更好的绑定事件优化，当点击组件以外的任何地方来取消组件，默认支持`@lihh/n-wrapper` . 具体参数组件`@lihh/n-wrapper`
+#### 导入样式
+
+> 文件`var.css` 存放一些变量，如果想自定义颜色可以覆盖变量，或是重新实现一遍
+
+```ts
+import "@lihh/n-context-menu/styles/var.css";
+import "@lihh/n-context-menu/styles/index.css";
+```
+
+> 为了更好的绑定事件优化，当点击组件以外的任何地方来取消组件，默认支持`@lihh/n-wrapper` . 具体参数组件`@lihh/n-wrapper`。只需要将组件`@lihh/n-wrapper
+传递数据 显示组件` 包裹在最外面
 
 #### 传递数据 显示组件
 
@@ -168,7 +178,7 @@ export const contextMenuProps = {
 | trigger             | 以何种方式触发组件显示       | string                      | click             | click/contextmenu  | 1.01  |
 | data                | 传递显示的数据               | IDataField[]                | []                | -                  | 1.01  |
 | appendToBody        | 是否将组件添加到 body 的子级 | boolean                     | false             | -                  | 1.01  |
-| slotGap             | 组件距离 默认 slot 距离      | number                      | 5                 | -                  | 1.01  |
+| slotGap             | 组件到默认插槽的距离         | number                      | 5                 | -                  | 1.01  |
 | destroyOnClose      | 关闭的时候 是否销毁 dom      | boolean                     | false             | -                  | 1.01  |
 | leaveAutoClose      | 悬浮离开组件 是否自动关闭    | boolean                     | true              | -                  | 1.01  |
 | position            | 可以控制组件的显示位置       | {top: number, left: number} | {top: 0, left: 0} | -                  | 1.01  |
@@ -195,9 +205,9 @@ export const contextMenuProps = {
 
 ### 插槽
 
-| 名称    | 描述                                                 |
-| ------- | ---------------------------------------------------- |
-| default | 包裹的触发元素                                       |
+| 名称    | 描述                                               |
+| ------- | -------------------------------------------------- |
+| default | 包裹的触发元素                                     |
 | panel   | 展示列表 注：跟`data` 不同时存在，插槽的优先级更高 |
 
 ## 更新记录

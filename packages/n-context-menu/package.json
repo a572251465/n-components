@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-context-menu",
-  "version": "1.0.9",
+  "version": "1.0.1",
   "description": "mouse right click vue component",
   "main": "index.ts",
   "module": "index.ts",
