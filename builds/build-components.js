@@ -29,7 +29,7 @@ const buildEachComponents = async () => {
       entryPoints: [path.join(inputFilePath, "index.ts")],
       format: "esm",
       bundle: true,
-      external: ["vue"],
+      external: ["vue", "@lihh/n-utils", "@lihh/n-wrapper"],
       outfile: path.join(inputFilePath, "index.transform.js"),
     });
 

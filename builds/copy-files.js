@@ -4,10 +4,11 @@ const glob = require("fast-glob");
 const { run } = require("./utils");
 
 const copyFiles = async () => {
-  let files = await glob(["**/*.json", "**/*.md"], {
+  let files = await glob(["*/*.json", "*/*.md"], {
     cwd: packageRoot,
     absolute: true,
     onlyFiles: true,
+    ignore: ["package-lock.json"],
   });
   files = files.filter((filePath) =>
     includePackages.some((name) => filePath.includes(name))

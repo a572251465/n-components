@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-context-menu",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "mouse right click vue component",
   "main": "index.ts",
   "module": "index.ts",
@@ -8,7 +8,8 @@
   "files": [
     "cjs",
     "es",
-    "types"
+    "types",
+    "styles"
   ],
   "repository": {
     "type": "git",
@@ -30,8 +31,9 @@
   ],
   "author": "lihh",
   "license": "MIT",
-  "dependencies": {
-    "@lihh/n-utils": "workspace:^1.0.1",
-    "@lihh/n-wrapper": "workspace:^1.0.4"
+  "dependencies": {},
+  "peerDependencies": {
+    "@lihh/n-utils": "^1.0.1",
+    "@lihh/n-wrapper": "^1.0.4"
   }
 }

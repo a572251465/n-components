@@ -16,7 +16,7 @@ export const contextMenuProps = {
   },
   trigger: {
     type: String as PropType<"contextmenu" | "click">,
-    default: "contextmenu",
+    default: "click",
     validator: (value: string) => ["contextmenu", "click"].includes(value),
   },
   data: {
@@ -25,7 +25,7 @@ export const contextMenuProps = {
   },
   appendToBody: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   slotGap: {
     type: Number,
@@ -38,7 +38,7 @@ export const contextMenuProps = {
   },
   leaveAutoClose: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   position: {
     type: Object as PropType<{ top: number; left: number }>,

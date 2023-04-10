@@ -22,6 +22,7 @@ importers:
       eslint-plugin-vue: ^9.10.0
       fast-glob: ^3.2.12
       gulp: ^4.0.2
+      gulp-less: ^5.0.0
       husky: ^8.0.3
       prettier: ^2.8.7
       rollup: ^3.20.2
@@ -49,6 +50,7 @@ importers:
       eslint-plugin-vue: 9.10.0_eslint@8.36.0
       fast-glob: 3.2.12
       gulp: 4.0.2
+      gulp-less: 5.0.0
       husky: 8.0.3
       prettier: 2.8.7
       rollup: 3.20.2
@@ -3901,6 +3903,20 @@ packages:
       - supports-color
     dev: true
 
+  /gulp-less/5.0.0:
+    resolution: {integrity: sha512-W2I3TewO/By6UZsM/wJG3pyK5M6J0NYmJAAhwYXQHR+38S0iDtZasmUgFCH3CQj+pQYw/PAIzxvFvwtEXz1HhQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      less: 4.1.3
+      object-assign: 4.1.1
+      plugin-error: 1.0.1
+      replace-ext: 2.0.0
+      through2: 4.0.2
+      vinyl-sourcemaps-apply: 0.2.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /gulp/4.0.2:
     resolution: {integrity: sha512-dvEs27SCZt2ibF29xYgmnwwCYZxdxhQ/+LFWlbAW8y7jt68L/65402Lz3+CKy0Ov4rOs+NERmDq7YlZaDqUIfA==}
     engines: {node: '>= 0.10'}
@@ -4915,6 +4931,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /object-assign/4.1.1:
+    resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /object-copy/0.1.0:
     resolution: {integrity: sha512-79LYn6VAb63zgtmAteVOWo9Vdj71ZVBy3Pbse+VqxDpEP83XuujMrGqHIwAXJ5I/aM0zU7dIyIAhifVTPrNItQ==}
     engines: {node: '>=0.10.0'}
@@ -5187,6 +5208,16 @@ packages:
   /pinkie/2.0.4:
     resolution: {integrity: sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /plugin-error/1.0.1:
+    resolution: {integrity: sha512-L1zP0dk7vGweZME2i+EeakvUNqSrdiI3F91TwEoYiGrAfUXmVv6fJIq4g82PAXxNsWOp0J7ZqQy/3Szz0ajTxA==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      ansi-colors: 1.1.0
+      arr-diff: 4.0.0
+      arr-union: 3.1.0
+      extend-shallow: 3.0.2
     dev: true
 
   /posix-character-classes/0.1.1:
@@ -6245,6 +6276,12 @@ packages:
       now-and-later: 2.0.1
       remove-bom-buffer: 3.0.0
       vinyl: 2.2.1
+    dev: true
+
+  /vinyl-sourcemaps-apply/0.2.1:
+    resolution: {integrity: sha512-+oDh3KYZBoZC8hfocrbrxbLUeaYtQK7J5WU5Br9VqWqmCll3tFJqKp97GC9GmMsVIL0qnx2DgEDVxdo5EZ5sSw==}
+    dependencies:
+      source-map: 0.5.7
     dev: true
 
   /vinyl/2.2.1:
