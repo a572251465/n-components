@@ -212,6 +212,7 @@ export const contextMenuProps = {
 ## update record
 
 - 1.0.1 first publish
+- 1.0.2 build context-menu ts file
 
 ## more
 

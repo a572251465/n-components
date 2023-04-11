@@ -8,7 +8,7 @@ const {
   packageRoot,
   includePackages,
 } = require("./utils/paths");
-const { pathRewriter } = require("./utils");
+const { pathRewriter, readDir } = require("./utils");
 
 const computedAllDirs = async () => {
   const dirNames = (await fs.readdir(packageRoot, "utf-8")).filter((name) =>
@@ -52,14 +52,13 @@ const buildTypes = async (packageRoot, outDir) => {
     tsConfigFilePath: path.resolve(projectRoot, "tsconfig.json"),
     skipAddingFilesFromTsConfig: true,
   });
-
-  const filePaths = await glob("**/*", {
-    // ** 任意目录  * 任意文件
-    cwd: packageRoot,
-    onlyFiles: true,
-    absolute: true,
-    ignore: ["*.transform.js", "*.json", "*.md"],
-  });
+  const filePaths = readDir(packageRoot, [
+    "transform.js",
+    "json",
+    "md",
+    "less",
+    "css",
+  ]);
 
   const sourceFiles = [];
 
@@ -81,8 +80,7 @@ const buildTypes = async (packageRoot, outDir) => {
       await fs.mkdir(path.dirname(filepath), {
         recursive: true,
       });
-      // @vu-design-plus -> vu-design-plus/es -> .d.ts 肯定不用去lib下查找
-      await fs.writeFile(filepath, pathRewriter("es")(outputFile.getText()));
+      await fs.writeFile(filepath, outputFile.getText());
     });
     await Promise.all(tasks);
   });

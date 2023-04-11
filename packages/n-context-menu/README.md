@@ -213,6 +213,7 @@ export const contextMenuProps = {
 ## 更新记录
 
 - 1.0.1 版本第一次发布
+- 1.0.2 编译context-menu ts文件
 
 ## 更多
 

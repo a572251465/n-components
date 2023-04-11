@@ -1,6 +1,8 @@
-const { spawn } = require('child_process')
-const { projectRoot } = require('./paths')
-const File = require('vinyl')
+const { spawn } = require("child_process");
+const { projectRoot } = require("./paths");
+const File = require("vinyl");
+const path = require("path");
+const fs = require("fs");
 
 /**
  * @author lihh
@@ -8,19 +10,19 @@ const File = require('vinyl')
  * @param name 任务名称
  * @param fn 任务方法
  */
-const withTaskName = (name, fn) => Object.assign(fn, { displayName: name })
+const withTaskName = (name, fn) => Object.assign(fn, { displayName: name });
 
 const run = async (command) => {
   return new Promise((resolve) => {
-    const [cmd, ...args] = command.split(' ')
+    const [cmd, ...args] = command.split(" ");
     const app = spawn(cmd, args, {
       cwd: projectRoot,
-      stdio: 'inherit',
-      shell: true
-    })
-    app.on('close', resolve)
-  })
-}
+      stdio: "inherit",
+      shell: true,
+    });
+    app.on("close", resolve);
+  });
+};
 
 /**
  * @author lihh
@@ -29,10 +31,10 @@ const run = async (command) => {
  */
 const pathRewriter = (format) => {
   return (id) => {
-    id = id.replace(/@vu-design-plus/g, `vu-design-plus/${format}`)
-    return id
-  }
-}
+    id = id.replace(/@vu-design-plus/g, `vu-design-plus/${format}`);
+    return id;
+  };
+};
 
 /**
  * @author lihh
@@ -43,21 +45,39 @@ const pathRewriter = (format) => {
  */
 const transformFlow = (replaceFn, ...args) => {
   return function (globFile, encoding, callback) {
-    const file = new File(globFile)
-    const { contents: contentBuffer } = file
-    const replaceContentHandle = replaceFn(...args)
+    const file = new File(globFile);
+    const { contents: contentBuffer } = file;
+    const replaceContentHandle = replaceFn(...args);
     const newContent = Buffer.isBuffer(contentBuffer)
       ? replaceContentHandle(contentBuffer.toString())
-      : contentBuffer
-    const res = new File({ ...file, contents: Buffer.from(newContent) })
-    this.push(res)
-    callback()
-  }
-}
+      : contentBuffer;
+    const res = new File({ ...file, contents: Buffer.from(newContent) });
+    this.push(res);
+    callback();
+  };
+};
+
+const readDir = (filePath, ignore = []) => {
+  const res = [];
+  const process = (dir) => {
+    const filenames = fs.readdirSync(dir, "utf-8");
+    filenames.forEach((filename) => {
+      const newPath = path.join(dir, filename);
+      if (newPath.includes("node_modules")) return;
+      const stat = fs.statSync(newPath);
+      if (stat.isDirectory()) return process(newPath);
+      if (ignore.some((name) => newPath.includes(name))) return;
+      res.push(newPath);
+    });
+  };
+  process(filePath);
+  return res;
+};
 
 module.exports = {
   withTaskName,
   run,
   pathRewriter,
-  transformFlow
-}
+  transformFlow,
+  readDir,
+};

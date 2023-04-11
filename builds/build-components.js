@@ -43,7 +43,7 @@ const buildEachComponents = async () => {
         commonJs(),
         nodeResolve(),
       ],
-      external: (id) => /vue/.test(id),
+      external: (id) => /vue/.test(id) || /lihh/.test(id),
     };
     const rollupOutputOptions = ["cjs", "es"].map((format) => ({
       file: path.join(outputFilePath, format, `index.js`),

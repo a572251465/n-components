@@ -57,7 +57,7 @@ export const usePropsOrCustomField = (
     );
     return data.filter((item) => item.isShow);
   });
-  const genInstanceId = ref<string | null>(null);
+  const genInstanceId = ref<any | null>(null);
 
   const computePosLocation = (
     slotGap: number

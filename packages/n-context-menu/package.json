@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-context-menu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "mouse right click vue component",
   "main": "index.ts",
   "module": "index.ts",
@@ -31,9 +31,9 @@
   ],
   "author": "lihh",
   "license": "MIT",
-  "dependencies": {},
-  "peerDependencies": {
+  "dependencies": {
     "@lihh/n-utils": "^1.0.1",
     "@lihh/n-wrapper": "^1.0.4"
-  }
+  },
+  "peerDependencies": {}
 }
