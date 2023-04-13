@@ -20,6 +20,8 @@ pnpm install @lihh/n-utils -S
 
 ### API
 
+- [addPrefix](#addPrefix)
+
 #### flattenJoinSymbol
 
 use example
@@ -159,7 +161,7 @@ export type getTypes = {
 };
 ```
 
-#### simple API
+#### simple api
 
 - isDate
 - isError
