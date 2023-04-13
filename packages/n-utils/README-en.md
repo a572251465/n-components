@@ -68,8 +68,6 @@ export type addPrefix<T> = {
 };
 ```
 
-#### isArray
-
 #### isEmpty
 
 ```js
@@ -109,12 +107,6 @@ isEmptyString(false);
 isEmptyString(0);
 ```
 
-#### isFunction
-
-#### isNull
-
-#### isNumber
-
 #### isObject
 
 ```js
@@ -145,10 +137,6 @@ isPlainObject(null);
 isPlainObject(1);
 ```
 
-#### isString
-
-#### isUndefined
-
 #### getTypes
 
 use example
@@ -171,7 +159,25 @@ export type getTypes = {
 };
 ```
 
+#### simple API
+
+- isDate
+- isError
+- isFormData
+- isMath
+- isRegExp
+- isSymbol
+- isMap
+- isSet
+- isString
+- isUndefined
+- isNumber
+- isNull
+- isFunction
+- isArray
+
 ## update records
+
 > no version explain, update README file
 
 - 1.0.1 first publish

@@ -1,2 +1,4 @@
-export const isPlainObject = (value: unknown) =>
-  toString.call(value) === "[object Object]";
+import { commonHandle } from "./helper";
+
+export const isPlainObject = (value: unknown): boolean =>
+  commonHandle(value, "object");
