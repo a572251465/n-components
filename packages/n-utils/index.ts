@@ -1,1 +1,14 @@
 export { flattenJoinSymbol } from "./src/flattenJoinSymbol";
+export { addPrefix } from "./src/addPrefix";
+export { isArray } from "./src/isArray";
+export { isEmpty } from "./src/isEmpty";
+export { isEmptyObject } from "./src/isEmptyObject";
+export { isEmptyString } from "./src/isEmptyString";
+export { isFunction } from "./src/isFunction";
+export { isNull } from "./src/isNull";
+export { isNumber } from "./src/isNumber";
+export { isObject } from "./src/isObject";
+export { isPlainObject } from "./src/isPlainObject";
+export { isString } from "./src/isString";
+export { isUndefined } from "./src/isUndefined";
+export { getTypes } from "./src/getTypes";

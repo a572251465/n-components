@@ -43,9 +43,138 @@ export type flattenJoinSymbol<T> = {
 };
 ```
 
+#### addPrefix
+
+use example
+
+```js
+import { addPrefix } from "@lihh/n-utils";
+const baseUrl = "/queryUserInfo";
+const prefix = "/api";
+
+// /api/queryUserInfo
+addPrefix(baseUrl, prefix);
+// /api/queryUserInfo
+addPrefix(baseUrl, "/api/");
+// /api-/queryUserInfo
+addPrefix(baseUrl, prefix, "-");
+```
+
+type
+
+```ts
+export type addPrefix<T> = {
+  (value: string, prefix: string, splitSymbol = "/"): string;
+};
+```
+
+#### isArray
+
+#### isEmpty
+
+```js
+import { isEmpty } from "@lihh/n-utils";
+// true
+isEmpty(null);
+// true
+isEmpty(undefined);
+// true
+isEmpty("");
+// false
+isEmpty(0);
+```
+
+#### isEmptyObject
+
+```js
+import { isEmptyObject } from "@lihh/n-utils";
+
+// true
+isEmptyObject({});
+// false
+isEmptyObject({ name: xx });
+// false
+isEmptyObject([]);
+```
+
+#### isEmptyString
+
+```js
+import { isEmptyString } from "@lihh/n-utils";
+// true
+isEmptyString("");
+// false
+isEmptyString(false);
+// false
+isEmptyString(0);
+```
+
+#### isFunction
+
+#### isNull
+
+#### isNumber
+
+#### isObject
+
+```js
+import { isObject } from "@lihh/n-utils";
+// true
+isObject({});
+// true
+isObject([]);
+// true
+isObject(null);
+// false
+isObject(1);
+```
+
+#### isPlainObject
+
+```js
+import { isPlainObject } from "@lihh/n-utils";
+// true
+isPlainObject({});
+// true
+isPlainObject({ age: 20 });
+// false
+isPlainObject([]);
+// false
+isPlainObject(null);
+// false
+isPlainObject(1);
+```
+
+#### isString
+
+#### isUndefined
+
+#### getTypes
+
+use example
+
+```js
+import { getTypes } from "@lihh/n-utils";
+// []
+getTypes();
+// ["number"]
+getTypes(1);
+// ["boolean", "string"]
+getTypes([true, "11"]);
+```
+
+type
+
+```ts
+export type getTypes = {
+  (value: unknown | unknown[]): string[];
+};
+```
+
 ## update records
 
 - 1.0.1 first publish
+- 1.0.2 add judge function `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
 
 ## more
 
