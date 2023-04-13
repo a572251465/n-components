@@ -1,6 +1,6 @@
 {
   "name": "@lihh/n-utils",
-  "version": "1.0.11",
+  "version": "1.0.31",
   "description": "common public methods",
   "main": "index.ts",
   "module": "index.ts",
