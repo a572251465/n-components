@@ -172,6 +172,7 @@ export type getTypes = {
 ```
 
 ## 更新记录
+> 无版本说明, 更新 README file
 
 - 1.0.1 版本第一次发布
 - 1.0.2 添加判断方法 `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
