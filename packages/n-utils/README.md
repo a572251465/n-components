@@ -20,6 +20,16 @@ pnpm install @lihh/n-utils -S
 
 ### API
 
+- [flattenJoinSymbol](#flattenJoinSymbol)
+- [addPrefix](#addPrefix)
+- [isEmpty](#isEmpty)
+- [isEmptyObject](#isEmptyObject)
+- [isEmptyString](#isEmptyString)
+- [isObject](#isObject)
+- [isPlainObject](#isPlainObject)
+- [getTypes](#getTypes)
+- [other api](#simple-api)
+
 #### flattenJoinSymbol
 
 使用案例
@@ -182,6 +192,7 @@ export type getTypes = {
 
 - 1.0.1 版本第一次发布
 - 1.0.2 添加判断方法 `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
+- 1.0.11 添加判断方法 `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 
 ## 更多
 

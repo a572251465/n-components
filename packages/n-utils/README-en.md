@@ -20,6 +20,16 @@ pnpm install @lihh/n-utils -S
 
 ### API
 
+- [flattenJoinSymbol](#flattenJoinSymbol)
+- [addPrefix](#addPrefix)
+- [isEmpty](#isEmpty)
+- [isEmptyObject](#isEmptyObject)
+- [isEmptyString](#isEmptyString)
+- [isObject](#isObject)
+- [isPlainObject](#isPlainObject)
+- [getTypes](#getTypes)
+- [other api](#simple-api)
+
 - [addPrefix](#addPrefix)
 
 #### flattenJoinSymbol
@@ -184,6 +194,7 @@ export type getTypes = {
 
 - 1.0.1 first publish
 - 1.0.2 add judge function `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
+- 1.0.11 add judge function `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 
 ## more
 
