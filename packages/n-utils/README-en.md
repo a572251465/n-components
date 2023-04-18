@@ -171,6 +171,39 @@ export type getTypes = {
 };
 ```
 
+#### isFullObject
+
+> not empty object && Whether certain attributes exist.
+
+##### field
+
+- value judge object，required input
+- fields The existing attribute must be an array, but it does not necessarily exist
+- isAll Do you want to satisfy that the value in fields exists in object value
+
+use example
+
+```js
+import { isFullObject } from "@lihh/n-utils";
+
+const info = { nam: "lihh", age: 20, address: "info" };
+console.log(isFullObject(info)); // true
+console.log(isFullObject(info, ["test"])); // false
+console.log(isFullObject(info, ["age"])); // true
+console.log(isFullObject(info, ["age"], true)); // true
+console.log(isFullObject(info, ["age,", "age1"], true)); // false
+```
+
+type
+
+```ts
+export type isFullObject = (
+  value: Record<string, unknown>,
+  fields?: string[],
+  isAll?: boolean
+) => boolean;
+```
+
 #### simple api
 
 - isDate
@@ -195,6 +228,7 @@ export type getTypes = {
 - 1.0.1 first publish
 - 1.0.2 add judge function `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
 - 1.0.11 add judge function `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
+- 1.0.32 add judge function `isFullObject`
 
 ## more
 

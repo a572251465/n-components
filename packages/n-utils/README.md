@@ -169,6 +169,39 @@ export type getTypes = {
 };
 ```
 
+#### isFullObject
+
+> 非空对象 && 是否满足某些属性存在。
+
+##### field
+
+- value 判断的对象，必须输入
+- fields 存在的属性，必须是数组，但是不一定要存在
+- isAll 是否要满足 fields 中的值 在对象 value 中存在
+
+使用案例
+
+```js
+import { isFullObject } from "@lihh/n-utils";
+
+const info = { nam: "lihh", age: 20, address: "info" };
+console.log(isFullObject(info)); // true
+console.log(isFullObject(info, ["test"])); // false
+console.log(isFullObject(info, ["age"])); // true
+console.log(isFullObject(info, ["age"], true)); // true
+console.log(isFullObject(info, ["age,", "age1"], true)); // false
+```
+
+类型
+
+```ts
+export type isFullObject = (
+  value: Record<string, unknown>,
+  fields?: string[],
+  isAll?: boolean
+) => boolean;
+```
+
 #### simple api
 
 - isDate
@@ -193,6 +226,7 @@ export type getTypes = {
 - 1.0.1 版本第一次发布
 - 1.0.2 添加判断方法 `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
 - 1.0.11 添加判断方法 `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
+- 1.0.32 添加判断方法 `isFullObject`
 
 ## 更多
 

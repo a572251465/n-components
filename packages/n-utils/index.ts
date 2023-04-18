@@ -20,3 +20,4 @@ export { isRegExp } from "./src/isRegExp";
 export { isSymbol } from "./src/isSymbol";
 export { isMap } from "./src/isMap";
 export { isSet } from "./src/isSet";
+export { isFullObject } from "./src/isFullObject";
