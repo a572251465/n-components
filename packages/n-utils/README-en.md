@@ -28,6 +28,7 @@ pnpm install @lihh/n-utils -S
 - [isObject](#isObject)
 - [isPlainObject](#isPlainObject)
 - [getTypes](#getTypes)
+- [isFullObject](#isFullObject)
 - [other api](#simple-api)
 
 - [addPrefix](#addPrefix)
