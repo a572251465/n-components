@@ -29,6 +29,7 @@ pnpm install @lihh/n-utils -S
 - [isPlainObject](#isPlainObject)
 - [getTypes](#getTypes)
 - [isFullObject](#isFullObject)
+- [equals](#equals)
 - [other api](#simple-api)
 
 #### flattenJoinSymbol
@@ -203,6 +204,27 @@ export type isFullObject = (
 ) => boolean;
 ```
 
+#### equals
+
+使用案例
+
+```js
+import { equals } from "@lihh/n-utils";
+
+console.log(equals(1, 1, 2)); // false
+console.log(equals({}, [], [])); // false
+const a = {};
+console.log(equals(a, a, a)); // true
+console.log(equals("200", 200, 200)); // true
+console.log(equals(null, undefined)); // true
+```
+
+类型
+
+```ts
+type equals = (...args: unknown[]) => boolean;
+```
+
 #### simple api
 
 - isDate
@@ -228,6 +250,7 @@ export type isFullObject = (
 - 1.0.2 添加判断方法 `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
 - 1.0.11 添加判断方法 `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 - 1.0.32 添加判断方法 `isFullObject`
+- 1.0.34 添加判断方法 `equals`
 
 ## 更多
 

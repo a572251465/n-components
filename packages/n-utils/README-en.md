@@ -29,9 +29,8 @@ pnpm install @lihh/n-utils -S
 - [isPlainObject](#isPlainObject)
 - [getTypes](#getTypes)
 - [isFullObject](#isFullObject)
+- [equals](#equals)
 - [other api](#simple-api)
-
-- [addPrefix](#addPrefix)
 
 #### flattenJoinSymbol
 
@@ -205,6 +204,27 @@ export type isFullObject = (
 ) => boolean;
 ```
 
+#### equals
+
+use example
+
+```js
+import { equals } from "@lihh/n-utils";
+
+console.log(equals(1, 1, 2)); // false
+console.log(equals({}, [], [])); // false
+const a = {};
+console.log(equals(a, a, a)); // true
+console.log(equals("200", 200, 200)); // true
+console.log(equals(null, undefined)); // true
+```
+
+type
+
+```ts
+type equals = (...args: unknown[]) => boolean;
+```
+
 #### simple api
 
 - isDate
@@ -230,6 +250,7 @@ export type isFullObject = (
 - 1.0.2 add judge function `addPrefix`, `isArray`, `isEmpty`, `isEmptyObject`, `isEmptyString`, `isFunction`, `isNull`, `isNumber`, `isObject`, `isPlainObject`, `isString`, `isUndefined`, `getTypes`
 - 1.0.11 add judge function `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 - 1.0.32 add judge function `isFullObject`
+- 1.0.34 add judge function `equals`
 
 ## more
 
