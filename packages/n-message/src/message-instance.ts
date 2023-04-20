@@ -24,6 +24,7 @@ const defaultValues: IMessageProps = {
   align: "left",
   onClose: defaultFn,
   offset: 16,
+  modelValue: false,
 };
 
 const handleMessage =

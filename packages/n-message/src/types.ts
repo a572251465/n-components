@@ -15,10 +15,11 @@ export interface IMessageProps {
   align: "left" | "center" | "right";
   onClose: INormalFn;
   offset: number;
+  modelValue: boolean;
 }
 
 export type IPartFn = (
-  message: string | Omit<IMessageProps, "theme" | "type">
+  message: string | Omit<IMessageProps, "theme" | "type" | "modelValue">
 ) => void;
 type IMessageTypes = {
   success: IPartFn;
@@ -36,6 +37,10 @@ export type NMessageProps = {
 };
 
 export const messageProps = {
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
   theme: {
     type: String as PropType<"light" | "dark">,
     default: "light",
