@@ -251,6 +251,7 @@ type equals = (...args: unknown[]) => boolean;
 - 1.0.11 添加判断方法 `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 - 1.0.32 添加判断方法 `isFullObject`
 - 1.0.34 添加判断方法 `equals`
+- 1.0.35 添加返回类型 `(value: unknown): boolean` => `(value: unknow): value is (...args: any[]) => any`
 
 ## 更多
 

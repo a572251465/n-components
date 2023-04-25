@@ -251,6 +251,7 @@ type equals = (...args: unknown[]) => boolean;
 - 1.0.11 add judge function `isDate`, `isError`, `isFormData`, `isMath`, `isRegExp`, `isSymbol`, `isMap`, `isSet`
 - 1.0.32 add judge function `isFullObject`
 - 1.0.34 add judge function `equals`
+- 1.0.35 add return type. `(value: unknown): boolean` => `(value: unknow): value is (...args: any[]) => any`
 
 ## more
 

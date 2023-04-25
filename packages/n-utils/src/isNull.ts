@@ -1,1 +1,1 @@
-export const isNull = (value: unknown) => value === null;
+export const isNull = (value: unknown): value is null => value === null;

@@ -1,3 +1,4 @@
 import { commonHandle } from "./helper";
 
-export const isDate = (value: unknown): boolean => commonHandle(value, "date");
+export const isDate = (value: unknown): value is boolean =>
+  commonHandle(value, "date");

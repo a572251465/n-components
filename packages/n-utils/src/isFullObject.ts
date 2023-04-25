@@ -5,7 +5,7 @@ export function isFullObject(
   value: Record<string, unknown>,
   fields?: string[],
   isAll?: boolean
-): boolean {
+): value is Record<string, unknown> {
   if (!isPlainObject(value) || Object.keys(value).length === 0) return false;
 
   const args = Array.prototype.slice.call(arguments, 1);

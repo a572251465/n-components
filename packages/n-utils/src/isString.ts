@@ -1,1 +1,2 @@
-export const isString = (value: unknown) => typeof value === "string";
+export const isString = (value: unknown): value is string =>
+  typeof value === "string";
