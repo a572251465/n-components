@@ -23,6 +23,7 @@ pnpm install @lihh/n-utils -S
 - [flattenJoinSymbol](#flattenJoinSymbol)
 - [addPrefix](#addPrefix)
 - [isEmpty](#isEmpty)
+- [isNotEmpty](#isNotEmpty)
 - [isEmptyObject](#isEmptyObject)
 - [isEmptyString](#isEmptyString)
 - [isObject](#isObject)
@@ -30,6 +31,7 @@ pnpm install @lihh/n-utils -S
 - [getTypes](#getTypes)
 - [isFullObject](#isFullObject)
 - [equals](#equals)
+- [slice](#slice)
 - [other api](#simple-api)
 
 #### flattenJoinSymbol
@@ -92,6 +94,20 @@ isEmpty(undefined);
 isEmpty("");
 // false
 isEmpty(0);
+```
+
+#### isNotEmpty
+
+```js
+import { isNotEmpty } from "@lihh/n-utils";
+// false
+isNotEmpty(null);
+// false
+isNotEmpty(undefined);
+// false
+isNotEmpty("");
+// true
+isNotEmpty(0);
 ```
 
 #### isEmptyObject
@@ -225,6 +241,42 @@ type
 type equals = (...args: unknown[]) => boolean;
 ```
 
+#### slice
+
+If there is a symbol present, the truncated part will only be truncated if it matches the symbol, otherwise it will not be truncated。
+If there are no symbols present, the function is similar to String. prototype. slice
+
+use example
+
+```js
+import { slice } from "@lihh/n-utils";
+
+console.log(slice("/myScreen", 1, "/")); // myScreen
+console.log(slice("/myScreen", 1, -1)); // myScree   = String.prototype.Slice
+console.log(slice("/myScreen/", 1, -1, "/")); // myScreen
+```
+
+type
+
+```ts
+function slice(value: string, start: number): string;
+function slice(value: string, start: number, end: string | number): string;
+function slice(
+  value: string,
+  start: number,
+  end: number,
+  symbols: string
+): string;
+function slice(
+  value: string,
+  start: number,
+  end?: number | string,
+  symbols?: string
+): string {
+  // todo
+}
+```
+
 #### simple api
 
 - isDate
@@ -252,6 +304,7 @@ type equals = (...args: unknown[]) => boolean;
 - 1.0.32 add judge function `isFullObject`
 - 1.0.34 add judge function `equals`
 - 1.0.35 add return type. `(value: unknown): boolean` => `(value: unknow): value is (...args: any[]) => any`
+- 1.0.36 add judge function `isNotEmpty`, `slice`
 
 ## more
 

@@ -22,3 +22,5 @@ export { isMap } from "./src/isMap";
 export { isSet } from "./src/isSet";
 export { isFullObject } from "./src/isFullObject";
 export { equals } from "./src/equals";
+export { isNotEmpty } from "./src/isNotEmpty";
+export { slice } from "./src/slice";

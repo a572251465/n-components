@@ -1,4 +1,3 @@
-const glob = require("fast-glob");
 const { Project } = require("ts-morph");
 const path = require("path");
 const fs = require("fs/promises");
@@ -8,7 +7,7 @@ const {
   packageRoot,
   includePackages,
 } = require("./utils/paths");
-const { pathRewriter, readDir } = require("./utils");
+const { readDir } = require("./utils");
 
 const computedAllDirs = async () => {
   const dirNames = (await fs.readdir(packageRoot, "utf-8")).filter((name) =>

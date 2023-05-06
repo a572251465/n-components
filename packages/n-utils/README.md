@@ -23,6 +23,7 @@ pnpm install @lihh/n-utils -S
 - [flattenJoinSymbol](#flattenJoinSymbol)
 - [addPrefix](#addPrefix)
 - [isEmpty](#isEmpty)
+- [isNotEmpty](#isNotEmpty)
 - [isEmptyObject](#isEmptyObject)
 - [isEmptyString](#isEmptyString)
 - [isObject](#isObject)
@@ -30,6 +31,7 @@ pnpm install @lihh/n-utils -S
 - [getTypes](#getTypes)
 - [isFullObject](#isFullObject)
 - [equals](#equals)
+- [slice](#slice)
 - [other api](#simple-api)
 
 #### flattenJoinSymbol
@@ -92,6 +94,20 @@ isEmpty(undefined);
 isEmpty("");
 // false
 isEmpty(0);
+```
+
+#### isNotEmpty
+
+```js
+import { isNotEmpty } from "@lihh/n-utils";
+// false
+isNotEmpty(null);
+// false
+isNotEmpty(undefined);
+// false
+isNotEmpty("");
+// true
+isNotEmpty(0);
 ```
 
 #### isEmptyObject
@@ -225,6 +241,42 @@ console.log(equals(null, undefined)); // true
 type equals = (...args: unknown[]) => boolean;
 ```
 
+#### slice
+
+如果有符号存在，被截取的部分跟符号一致才会截取，反之不截取。
+如果没有符号存在，功能类似于 String.prototype.slice
+
+use example
+
+```js
+import { slice } from "@lihh/n-utils";
+
+console.log(slice("/myScreen", 1, "/")); // myScreen
+console.log(slice("/myScreen", 1, -1)); // myScree   = String.prototype.Slice
+console.log(slice("/myScreen/", 1, -1, "/")); // myScreen
+```
+
+type
+
+```ts
+function slice(value: string, start: number): string;
+function slice(value: string, start: number, end: string | number): string;
+function slice(
+  value: string,
+  start: number,
+  end: number,
+  symbols: string
+): string;
+function slice(
+  value: string,
+  start: number,
+  end?: number | string,
+  symbols?: string
+): string {
+  // todo
+}
+```
+
 #### simple api
 
 - isDate
@@ -252,6 +304,7 @@ type equals = (...args: unknown[]) => boolean;
 - 1.0.32 添加判断方法 `isFullObject`
 - 1.0.34 添加判断方法 `equals`
 - 1.0.35 添加返回类型 `(value: unknown): boolean` => `(value: unknow): value is (...args: any[]) => any`
+- 1.0.36 添加判断方法 `isNotEmpty`, `slice`
 
 ## 更多
 
