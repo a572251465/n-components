@@ -32,6 +32,8 @@ pnpm install @lihh/n-utils -S
 - [isFullObject](#isFullObject)
 - [equals](#equals)
 - [slice](#slice)
+- [isBlankEmpty](#isBlankEmpty)
+- [valueOrDefault](#valueOrDefault)
 - [other api](#simple-api)
 
 #### flattenJoinSymbol
@@ -277,6 +279,46 @@ function slice(
 }
 ```
 
+#### isBlankEmpty
+
+```js
+import { isBlankEmpty } from "@lihh/n-utils";
+// true
+isBlankEmpty(null);
+// true
+isBlankEmpty(undefined);
+// true
+isBlankEmpty("");
+// true    isEmpty(0) === false
+isBlankEmpty(0);
+```
+
+#### valueOrDefault
+
+- use
+
+```js
+import { valueOrDefault, isBlankEmpty } from "@lihh/n-utils";
+// 1
+valueOrDefault("", "1");
+// 10
+valueOrDefault(10, 20);
+// 0
+valueOrDefault(0, 10);
+// 10
+valueOrDefault(0, 10, isBlankEmpty);
+```
+
+- type
+
+```ts
+type valueOrDefault = <T>(
+  value: T,
+  replaceValue: T,
+  judgeFn = isEmpty
+) => boolean;
+```
+
 #### simple api
 
 - isDate
@@ -305,6 +347,7 @@ function slice(
 - 1.0.34 add judge function `equals`
 - 1.0.35 add return type. `(value: unknown): boolean` => `(value: unknow): value is (...args: any[]) => any`
 - 1.0.36 add judge function `isNotEmpty`, `slice`
+- 1.0.37 add judge function `isBlankEmpty`, `valueOrDefault`
 
 ## more
 

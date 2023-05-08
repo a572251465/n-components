@@ -24,3 +24,5 @@ export { isFullObject } from "./src/isFullObject";
 export { equals } from "./src/equals";
 export { isNotEmpty } from "./src/isNotEmpty";
 export { slice } from "./src/slice";
+export { valueOrDefault } from "./src/valueOrDefault";
+export { isBlankEmpty } from "./src/isBlankEmpty";
